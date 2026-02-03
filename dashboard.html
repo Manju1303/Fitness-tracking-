@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Pro - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dashboard-page">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-mini">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="22" stroke="url(#sidebarGrad1)" stroke-width="3" />
+                    <path d="M16 24C16 19.5817 19.5817 16 24 16C28.4183 16 32 19.5817 32 24V32H16V24Z"
+                        fill="url(#sidebarGrad1)" />
+                    <defs>
+                        <linearGradient id="sidebarGrad1" x1="0" y1="0" x2="48" y2="48">
+                            <stop offset="0%" stop-color="#6366f1" />
+                            <stop offset="100%" stop-color="#8b5cf6" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h2>FitTrack Pro</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                <span>Overview</span>
+            </a>
+            <a href="workouts.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5M2 12h4M18 12h4M12 2v4M12 18v4" />
+                </svg>
+                <span>Workouts</span>
+            </a>
+            <a href="nutrition.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                </svg>
+                <span>Nutrition</span>
+            </a>
+            <a href="goals.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                </svg>
+                <span>Goals</span>
+            </a>
+            <a href="#progress" class="nav-item" data-section="progress">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="20" x2="12" y2="10" />
+                    <line x1="18" y1="20" x2="18" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="16" />
+                </svg>
+                <span>Progress</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" class="nav-item" id="logoutBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+    <main class="main-content">
+        <header class="dashboard-header">
+            <div class="greeting">
+                <h1>Welcome back, <span id="userName">Fitness Enthusiast</span></h1>
+                <p id="currentDate"></p>
+            </div>
+            <div class="user-avatar">
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop&q=80"
+                    alt="User Profile" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            </div>
+        </header>
+        <div class="dashboard-content">
+            <!-- Modals -->
+            <!-- Start Workout Modal -->
+            <div class="modal" id="workoutModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Start Workout</h2>
+                        <button class="modal-close" aria-label="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="workoutForm">
+                            <div class="form-field">
+                                <label for="workoutType">Workout Type</label>
+                                <select id="workoutType" required>
+                                    <option value="">Select activity...</option>
+                                    <option value="running">Running</option>
+                                    <option value="cycling">Cycling</option>
+                                    <option value="weights">Weight Training</option>
+                                    <option value="yoga">Yoga</option>
+                                    <option value="hiit">HIIT</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="duration">Duration (minutes)</label>
+                                <input type="number" id="duration" placeholder="e.g. 45" required min="1">
+                            </div>
+                            <div class="form-field">
+                                <label for="intensity">Intensity</label>
+                                <select id="intensity">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-secondary modal-cancel">Cancel</button>
+                                <button type="submit" class="btn-primary">Start Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Log Meal Modal -->
+            <div class="modal" id="mealModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Log Meal</h2>
+                        <button class="modal-close" aria-label="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="mealForm">
+                            <div class="form-field">
+                                <label for="mealType">Meal Type</label>
+                                <select id="mealType" required>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
+                                    <option value="snack">Snack</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="foodName">Food Item</label>
+                                <input type="text" id="foodName" placeholder="e.g. Grilled Chicken Salad" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="calories">Calories (kcal)</label>
+                                <input type="number" id="calories" placeholder="e.g. 450" required min="0">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-secondary modal-cancel">Cancel</button>
+                                <button type="submit" class="btn-primary">Log Meal</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Log Weight Modal -->
+            <div class="modal" id="weightModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Log Weight</h2>
+                        <button class="modal-close" aria-label="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="weightForm">
+                            <div class="form-field">
+                                <label for="weight">Current Weight (kg)</label>
+                                <input type="number" id="weight" placeholder="e.g. 75.5" step="0.1" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="date">Date</label>
+                                <input type="date" id="weightDate" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-secondary modal-cancel">Cancel</button>
+                                <button type="submit" class="btn-primary">Update Weight</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <section class="stats-grid">
+                <div class="stat-card calories">
+                    <div class="stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2C8 6 6 10 6 14a6 6 0 0 0 12 0c0-4-2-8-6-12z" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Calories Burned</span>
+                        <span class="stat-value" id="caloriesValue">1,847</span>
+                        <span class="stat-change">+12% from yesterday</span>
+                    </div>
+                </div>
+                <div class="stat-card steps">
+                    <div class="stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16" />
+                            <path d="M14 14l2.586-2.586a2 2 0 0 1 2.828 0L20 12" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Steps Today</span>
+                        <span class="stat-value" id="stepsValue">8,542</span>
+                        <span class="stat-change">+5% from yesterday</span>
+                    </div>
+                </div>
+                <div class="stat-card workouts-card">
+                    <div class="stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5M2 12h4M18 12h4M12 2v4M12 18v4" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Workouts This Week</span>
+                        <span class="stat-value" id="workoutsValue">5</span>
+                        <span class="stat-change">On track!</span>
+                    </div>
+                </div>
+                <div class="stat-card active">
+                    <div class="stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Active Minutes</span>
+                        <span class="stat-value" id="activeMinutes">127</span>
+                        <span class="stat-change">+18% from yesterday</span>
+                    </div>
+                </div>
+            </section>
+            <section class="charts-section">
+                <div class="chart-card">
+                    <h3>Weekly Activity</h3>
+                    <div class="bar-chart">
+                        <div class="chart-bar" style="--height:65%">
+                            <div class="bar-fill"></div><span>Mon</span>
+                        </div>
+                        <div class="chart-bar" style="--height:80%">
+                            <div class="bar-fill"></div><span>Tue</span>
+                        </div>
+                        <div class="chart-bar" style="--height:45%">
+                            <div class="bar-fill"></div><span>Wed</span>
+                        </div>
+                        <div class="chart-bar" style="--height:90%">
+                            <div class="bar-fill"></div><span>Thu</span>
+                        </div>
+                        <div class="chart-bar" style="--height:70%">
+                            <div class="bar-fill"></div><span>Fri</span>
+                        </div>
+                        <div class="chart-bar" style="--height:95%">
+                            <div class="bar-fill"></div><span>Sat</span>
+                        </div>
+                        <div class="chart-bar today" style="--height:75%">
+                            <div class="bar-fill"></div><span>Sun</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Recent Workouts</h3>
+                    <div class="workouts-list">
+                        <div class="workout-item">
+                            <div class="workout-icon running">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                </svg>
+                            </div>
+                            <div class="workout-details">
+                                <h4>Morning Run</h4>
+                                <p>5.2 km • 32 min • 320 cal</p>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="workout-icon strength">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5M2 12h4M18 12h4M12 2v4M12 18v4" />
+                                </svg>
+                            </div>
+                            <div class="workout-details">
+                                <h4>Upper Body Strength</h4>
+                                <p>45 min • 12 exercises • 280 cal</p>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="workout-icon yoga">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="5" r="3" />
+                                    <path d="M12 8v8M8 16l4 4 4-4" />
+                                </svg>
+                            </div>
+                            <div class="workout-details">
+                                <h4>Yoga Session</h4>
+                                <p>30 min • Relaxation • 120 cal</p>
+                            </div>
+                        </div>
+                        <div class="workout-item"><span class="workout-icon">🚴</span>
+                            <div>
+                                <h4>Cycling</h4>
+                                <p>15 km • 50 min • 450 cal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bottom-section">
+                <div class="chart-card">
+                    <h3>Active Goals</h3>
+                    <div class="goals-list">
+                        <div class="goal-item"><span>Lose 5 kg</span>
+                            <div class="goal-progress">
+                                <div style="width:60%"></div>
+                            </div><span>3/5 kg</span>
+                        </div>
+                        <div class="goal-item"><span>Run 100 km</span>
+                            <div class="goal-progress">
+                                <div style="width:85%"></div>
+                            </div><span>85/100 km</span>
+                        </div>
+                        <div class="goal-item completed"><span>30 Workouts ✓</span>
+                            <div class="goal-progress">
+                                <div style="width:100%"></div>
+                            </div><span>Done!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-btn" id="startWorkoutBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                            <span>Start Workout</span>
+                        </button>
+                        <button class="action-btn" id="logMealBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                            </svg>
+                            <span>Log Meal</span>
+                        </button>
+                        <button class="action-btn" id="addWaterBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                            </svg>
+                            <span>Add Water</span>
+                        </button>
+                        <button class="action-btn" id="logWeightBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                            <span>Log Weight</span>
+                        </button>
+                    </div>
+                    <div class="water-tracker">
+                        <h4>Today's Water Intake</h4>
+                        <div class="water-progress-bar">
+                            <div class="water-fill" style="width: 62.5%"></div>
+                        </div>
+                        <p class="water-info">5 of 8 glasses (1.25L / 2L)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+
+</html>

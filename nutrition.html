@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Pro - Nutrition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dashboard-page">
+    <aside class="sidebar" id="sidebar">
+        <!-- Exact copy of sidebar for consistency -->
+        <div class="sidebar-header">
+            <div class="logo-mini">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="22" stroke="url(#sidebarGrad1)" stroke-width="3" />
+                    <path d="M16 24C16 19.5817 19.5817 16 24 16C28.4183 16 32 19.5817 32 24V32H16V24Z"
+                        fill="url(#sidebarGrad1)" />
+                    <defs>
+                        <linearGradient id="sidebarGrad1" x1="0" y1="0" x2="48" y2="48">
+                            <stop offset="0%" stop-color="#6366f1" />
+                            <stop offset="100%" stop-color="#8b5cf6" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h2>FitTrack Pro</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                <span>Overview</span>
+            </a>
+            <a href="workouts.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5M2 12h4M18 12h4M12 2v4M12 18v4" />
+                </svg>
+                <span>Workouts</span>
+            </a>
+            <a href="nutrition.html" class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                </svg>
+                <span>Nutrition</span>
+            </a>
+            <a href="goals.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                </svg>
+                <span>Goals</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" class="nav-item" id="logoutBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="dashboard-header">
+            <div class="greeting">
+                <h1>Nutrition Tracker</h1>
+                <p>Eat healthy, stay healthy</p>
+            </div>
+            <div class="user-avatar">
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop&q=80"
+                    alt="User Profile" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <section class="stats-grid">
+                <div class="stat-card calories">
+                    <div class="stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2C8 6 6 10 6 14a6 6 0 0 0 12 0c0-4-2-8-6-12z" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Daily Goal</span>
+                        <span class="stat-value">2,200</span>
+                        <span class="stat-change">kcal</span>
+                    </div>
+                </div>
+                <div class="stat-card active">
+                    <div class="stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Consumed</span>
+                        <span class="stat-value" id="consumedCalories">1,450</span>
+                        <span class="stat-change">kcal</span>
+                    </div>
+                </div>
+                <div class="stat-card workouts-card">
+                    <div class="stat-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+                            <line x1="16" y1="8" x2="2" y2="22"></line>
+                            <line x1="17.5" y1="15" x2="9" y2="15"></line>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Remaining</span>
+                        <span class="stat-value">750</span>
+                        <span class="stat-change">kcal</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="charts-section">
+                <!-- Log Meal Form -->
+                <div class="chart-card">
+                    <h3>Log Meal</h3>
+                    <form id="fullMealForm" class="styled-form">
+                        <div class="form-field">
+                            <label>Meal Type</label>
+                            <select id="nutritionMealType" required>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Food Item</label>
+                            <input type="text" id="nutritionFoodName" placeholder="e.g. Oatmeal with berries" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Calories</label>
+                                <input type="number" id="nutritionCalories" required>
+                            </div>
+                            <div class="form-field">
+                                <label>Protein (g)</label>
+                                <input type="number" id="nutritionProtein" placeholder="Optional">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%;">Add Food</button>
+                    </form>
+                </div>
+
+                <!-- Daily Log -->
+                <div class="chart-card" style="grid-column: span 2;">
+                    <h3>Today's Food Log</h3>
+                    <div class="goals-list" id="foodLogList">
+                        <div class="goal-item">
+                            <div style="flex: 1;">
+                                <strong>Breakfast</strong>
+                                <span style="display:block; font-size:13px; color:var(--text-muted);">Eggs &
+                                    Toast</span>
+                            </div>
+                            <span>450 kcal</span>
+                        </div>
+                        <div class="goal-item">
+                            <div style="flex: 1;">
+                                <strong>Lunch</strong>
+                                <span style="display:block; font-size:13px; color:var(--text-muted);">Chicken
+                                    Salad</span>
+                            </div>
+                            <span>600 kcal</span>
+                        </div>
+                        <div class="goal-item">
+                            <div style="flex: 1;">
+                                <strong>Snack</strong>
+                                <span style="display:block; font-size:13px; color:var(--text-muted);">Apple &
+                                    Almonds</span>
+                            </div>
+                            <span>200 kcal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+
+</html>

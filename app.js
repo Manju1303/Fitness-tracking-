@@ -1,6 +1,6 @@
 // FitTrack Pro - Main JavaScript
 // Common credentials
-const VALID_USERNAME = 'aids';
+const VALID_USERNAME = 'admin';
 const VALID_PASSWORD = '123';
 
 // Check if user is logged in
